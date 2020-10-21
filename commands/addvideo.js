@@ -6,7 +6,7 @@ module.exports = {
   description: "Legg til ny oppgave/video i quizen",
   usage: "addvideo <url>",
   execute(message) {
-    if(tools.isAllowedToIssuecommand(message)) {
+    if(tools.isAllowedToIssueCommand(message)) {
       // TODO
     }
   },

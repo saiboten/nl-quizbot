@@ -6,7 +6,7 @@ module.exports = {
   description: "Fjern video",
   usage: "addvideo <id>",
   execute(message) {
-    if(tools.isAllowedToIssuecommand(message)) {
+    if(tools.isAllowedToIssueCommand(message)) {
       // TODO
     }
   },

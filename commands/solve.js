@@ -5,7 +5,7 @@ module.exports = {
   description: "Marker en oppgave som løst",
   usage: "addvideo <id> <correctanswer> <discord-bruker-tag>",
   execute(message) {
-    if(tools.isAllowedToIssuecommand(message)) {
+    if(tools.isAllowedToIssueCommand(message)) {
       // TODO
     }
   },

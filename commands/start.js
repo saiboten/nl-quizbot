@@ -5,7 +5,7 @@ module.exports = {
   name: "start",
   description: "Start quiz",
   execute(message) {
-    if(tools.isAllowedToIssuecommand(message)) {
+    if(tools.isAllowedToIssueCommand(message)) {
       // TODO
     }
   },
