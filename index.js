@@ -28,6 +28,11 @@ client.on("message", (message) => {
 
   const command = client.commands.get(commandName);
 
+  if (message.channel.type !== "dm") {
+    // Only DM commands allowed for now
+    return;
+  }
+
   if (command.args && !args.length) {
     let reply = `You didn't provide any arguments, ${message.author}!`;
 

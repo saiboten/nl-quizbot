@@ -1,8 +1,11 @@
+const { startQuiz } = require("../state/state");
+
 module.exports = {
   admin: true,
   name: "start",
   description: "Start quiz",
   execute(message) {
-    // TODO
+    startQuiz();
+    message.reply("Quiz startet!");
   },
 };

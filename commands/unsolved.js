@@ -1,7 +1,14 @@
+let { getQuiz } = require("../state/questionstore");
+
 module.exports = {
   name: "unsolved",
-  description: "List ut uløste oppgave",
+  description: "List ut uløste oppgaver",
   execute(message) {
-    // TODO
+    const solved = getQuiz()
+      .filter((el) => !el.solved)
+      .map((el) => {
+        return `${el.id}: ${el.content}`;
+      });
+    message.reply(`Uløste oppgaver: ${solved}`);
   },
 };
