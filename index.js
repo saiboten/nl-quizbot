@@ -1,6 +1,7 @@
 const fs = require("fs");
 const Discord = require("discord.js");
 const { prefix, token } = require("./config.json");
+const { isAllowedToIssueCommand } = require("./tools.js");
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -27,6 +28,11 @@ client.on("message", (message) => {
   if (!client.commands.has(commandName)) return;
 
   const command = client.commands.get(commandName);
+
+  if (command.admin && !isAllowedToIssueCommand(message)) {
+    message.reply("Du har ikke tilgang til å kjøre denne kommandoen");
+    return;
+  }
 
   if (message.channel.type !== "dm") {
     // Only DM commands allowed for now
