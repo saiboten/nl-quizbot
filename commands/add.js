@@ -1,4 +1,5 @@
 const { addQuestion } = require("../state/questionstore");
+const tools = require("../functions.js");
 
 module.exports = {
   admin: true,
@@ -7,8 +8,10 @@ module.exports = {
   usage: "add <url>",
   args: true,
   execute(message, args) {
-    console.log("Legger til oppgave");
-    addQuestion(args.join(" "));
-    message.reply(`La til oppgave med innhold: ${args.join(" ")}`);
+    if (tools.isAllowedToIssueCommand(message)) {
+      console.log("Legger til oppgave");
+      addQuestion(args.join(" "));
+      message.reply(`La til oppgave med innhold: ${args.join(" ")}`);
+    }
   },
 };
