@@ -8,7 +8,7 @@ module.exports = {
     const formattedQuiz = getQuiz().map(
       (el) =>
         `Id: ${el.id}. Innhold: ${el.content}. Løst: ${
-          el.solved ? "Ja" : "Nei"
+          el.solved ? "\:white_check_mark:" : "\:x:"
         }`
     );
 
