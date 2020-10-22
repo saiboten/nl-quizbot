@@ -1,5 +1,5 @@
 import { CommandType } from "../types";
-const { deleteQuestion } = require("../state/questionstore");
+import { deleteQuestion } from "../state/questionstore";
 
 const command: CommandType = {
   admin: true,

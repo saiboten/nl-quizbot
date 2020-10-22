@@ -1,5 +1,5 @@
 import { CommandType } from "../types";
-const { markSolved } = require("../state/questionstore");
+import { markSolved } from "../state/questionstore";
 
 const command: CommandType = {
   name: "solve",

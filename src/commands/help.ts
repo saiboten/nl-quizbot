@@ -1,5 +1,5 @@
 import { CommandType } from "../types";
-const { endQuiz } = require("../state/state");
+import { endQuiz } from "../state/state";
 
 const command: CommandType = {
   admin: true,
