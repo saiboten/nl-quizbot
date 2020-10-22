@@ -8,4 +8,7 @@ export interface CommandType {
   usage?: string;
   name: string;
   execute: (message: Discord.Message, args: string[]) => void;
+  supportedStates: states[];
 }
+
+export type states = "IDLE" | "PREPARATION" | "STARTED";

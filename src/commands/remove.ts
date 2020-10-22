@@ -8,6 +8,7 @@ const command: CommandType = {
   usage: "remove <id>",
   args: true,
   pmOnly: true,
+  supportedStates: ["PREPARATION"],
   execute(message, args) {
     try {
       deleteQuestion(parseInt(args[0]));

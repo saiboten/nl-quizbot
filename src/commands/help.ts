@@ -6,6 +6,7 @@ const command: CommandType = {
   name: "help",
   description: "Hjelp",
   pmOnly: true,
+  supportedStates: ["STARTED"],
   execute(message) {
     endQuiz();
     message.reply(

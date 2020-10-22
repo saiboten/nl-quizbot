@@ -7,6 +7,7 @@ const command: CommandType = {
   usage: "addvideo <id> <discord-bruker-tag> <correctanswer>",
   args: true,
   admin: true,
+  supportedStates: ["STARTED"],
   execute(message, args) {
     const [id, user, ...answerArray] = args;
     const answer = answerArray.join(" ");

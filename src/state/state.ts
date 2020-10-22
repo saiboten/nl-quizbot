@@ -1,4 +1,6 @@
-let state = "IDLE";
+import { states } from "../types";
+
+export let state: states = "IDLE";
 
 export function prepare() {
   state = "PREPARATION";

@@ -5,6 +5,7 @@ const command: CommandType = {
   name: "unsolved",
   description: "List ut uløste oppgaver",
   pmOnly: true,
+  supportedStates: ["STARTED"],
   execute(message) {
     const solved = getQuiz()
       .filter((el) => !el.solved)

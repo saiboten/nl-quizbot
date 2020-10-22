@@ -5,8 +5,10 @@ import { CommandType } from "./types";
 import { prefix, token } from "./config.json";
 import { isAllowedToIssueCommand } from "./tools";
 
+import { state } from "./state/state";
+
 const client = new Discord.Client();
-const commands = new Discord.Collection<string, CommandType>();
+const allCommands = new Discord.Collection<string, CommandType>();
 
 const commandFiles = fs
   .readdirSync("./src/commands")
@@ -14,7 +16,7 @@ const commandFiles = fs
 
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
-  commands.set(command.name, command);
+  allCommands.set(command.name, command);
 }
 
 client.once("ready", () => {
@@ -27,6 +29,8 @@ client.on("message", (message) => {
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   const commandName = args?.shift()?.toLowerCase() || "";
 
+  const commands = allCommands.filter((m) => m.supportedStates.includes(state));
+
   if (!commands.has(commandName)) {
     return;
   }
@@ -35,6 +39,7 @@ client.on("message", (message) => {
     name: "unknown",
     execute: () => {},
     description: "",
+    supportedStates: [],
   };
 
   const command = commands.get(commandName) || unknownCommand;
@@ -51,16 +56,16 @@ client.on("message", (message) => {
     return;
   }
 
-  if (message.channel.type !== "dm") {
-    // Only DM commands allowed for now
+  if (command.pmOnly && message.channel.type !== "dm") {
+    console.log("This command only availabe in pm");
     return;
   }
 
   if (command.args && !args.length) {
-    let reply = `You didn't provide any arguments, ${message.author}!`;
+    let reply = `Du mangler informasjon i kommandoen!`;
 
     if (command.usage) {
-      reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
+      reply += `\nDen riktige bruk av denne kommandoen er: \`${prefix} ${command.name} ${command.usage}\``;
     }
     return message.channel.send(reply);
   }

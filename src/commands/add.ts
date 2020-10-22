@@ -8,8 +8,8 @@ const command: CommandType = {
   usage: "add <url>",
   args: true,
   pmOnly: true,
+  supportedStates: ["PREPARATION"],
   execute(message, args) {
-    console.log("what");
     addQuestion(args.join(" "));
     message.reply(`La til oppgave med innhold: ${args.join(" ")}`);
   },
