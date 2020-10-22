@@ -9,9 +9,11 @@ const command: CommandType = {
   admin: true,
   execute(message, args) {
     const [id, user, ...answerArray] = args;
-    answer = answerArray.join(" ");
+    const answer = answerArray.join(" ");
     markSolved(parseInt(id), answer, user);
-    message.channel.send(`Oppgave ${id} er løst av ${user}. Riktig svar: ${answer} \:raised_hands:`);
+    message.channel.send(
+      `Oppgave ${id} er løst av ${user}. Riktig svar: ${answer} \:raised_hands:`
+    );
   },
 };
 
