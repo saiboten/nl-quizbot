@@ -1,9 +1,11 @@
-let { getQuiz } = require("../state/questionstore");
+import { CommandType } from "../types";
+import { getQuiz } from "../state/questionstore";
 
-module.exports = {
+const command: CommandType = {
   admin: true,
   name: "list",
   description: "List videoer",
+  pmOnly: true,
   execute(message) {
     const formattedQuiz = getQuiz().map(
       (el) =>
@@ -15,3 +17,5 @@ module.exports = {
     message.reply(`Lister ut videoer: ${formattedQuiz}`);
   },
 };
+
+module.exports = command;

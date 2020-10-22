@@ -1,3 +1,5 @@
+const adminList = [];
+
 module.exports = {
   isAllowedToIssueCommand: function (message) {
     return message.member.roles.cache.some(

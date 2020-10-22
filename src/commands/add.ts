@@ -1,14 +1,18 @@
-const { addQuestion } = require("../state/questionstore");
+import { CommandType } from "../types";
+import { addQuestion } from "../state/questionstore";
 
-module.exports = {
+const command: CommandType = {
   admin: true,
   name: "add",
   description: "Legg til ny oppgave/video i quizen",
   usage: "add <url>",
   args: true,
+  pmOnly: true,
   execute(message, args) {
-    console.log("Legger til oppgave");
+    console.log("what");
     addQuestion(args.join(" "));
     message.reply(`La til oppgave med innhold: ${args.join(" ")}`);
   },
 };
+
+module.exports = command;

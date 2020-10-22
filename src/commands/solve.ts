@@ -1,6 +1,7 @@
+import { CommandType } from "../types";
 const { markSolved } = require("../state/questionstore");
 
-module.exports = {
+const command: CommandType = {
   name: "solve",
   description: "Marker en oppgave som løst",
   usage: "addvideo <id> <correctanswer> <discord-bruker-tag>",
@@ -12,3 +13,5 @@ module.exports = {
     message.reply(`Markert oppgave ${id} som løst av ${user}.`);
   },
 };
+
+module.exports = command;

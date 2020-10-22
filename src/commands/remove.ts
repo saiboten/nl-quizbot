@@ -1,11 +1,13 @@
+import { CommandType } from "../types";
 const { deleteQuestion } = require("../state/questionstore");
 
-module.exports = {
+const command: CommandType = {
   admin: true,
   name: "remove",
   description: "Fjern video",
   usage: "remove <id>",
   args: true,
+  pmOnly: true,
   execute(message, args) {
     try {
       deleteQuestion(parseInt(args[0]));
@@ -15,3 +17,5 @@ module.exports = {
     }
   },
 };
+
+module.exports = command;

@@ -1,18 +1,20 @@
-const fs = require("fs");
-const Discord = require("discord.js");
-const { prefix, token } = require("./config.json");
-const { isAllowedToIssueCommand } = require("./tools.js");
+import Discord from "discord.js";
+import fs from "fs";
+import { CommandType } from "./types";
+
+import { prefix, token } from "./config.json";
+import { isAllowedToIssueCommand } from "./tools";
 
 const client = new Discord.Client();
-client.commands = new Discord.Collection();
+const commands = new Discord.Collection<string, CommandType>();
 
 const commandFiles = fs
-  .readdirSync("./commands")
-  .filter((file) => file.endsWith(".js"));
+  .readdirSync("./src/commands")
+  .filter((file: any) => file.endsWith(".js") || file.endsWith(".ts"));
 
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
-  client.commands.set(command.name, command);
+  commands.set(command.name, command);
 }
 
 client.once("ready", () => {
@@ -23,14 +25,29 @@ client.on("message", (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
-  const commandName = args.shift().toLowerCase();
+  const commandName = args?.shift()?.toLowerCase() || "";
 
-  if (!client.commands.has(commandName)) return;
+  if (!commands.has(commandName)) {
+    return;
+  }
 
-  const command = client.commands.get(commandName);
+  const unknownCommand: CommandType = {
+    name: "unknown",
+    execute: () => {},
+    description: "",
+  };
 
-  if (command.admin && !isAllowedToIssueCommand(message)) {
+  const command = commands.get(commandName) || unknownCommand;
+
+  if (command.admin && !command.pmOnly && !isAllowedToIssueCommand(message)) {
+    console.log("Ingen tilgang til kommando");
     message.reply("Du har ikke tilgang til å kjøre denne kommandoen");
+    return;
+  }
+
+  if (command.name === "unknown") {
+    console.log("Ukjent kommando");
+    message.reply("Ukjent kommando");
     return;
   }
 

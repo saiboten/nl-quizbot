@@ -1,7 +1,7 @@
-const { endQuiz } = require("../state/state");
-const tools = require("../tools.js");
+import { CommandType } from "../types";
+import { endQuiz } from "../state/state";
 
-module.exports = {
+const command: CommandType = {
   admin: true,
   name: "end",
   description: "Avslutt quiz",
@@ -10,3 +10,5 @@ module.exports = {
     message.reply("Quiz avsluttet!");
   },
 };
+
+module.exports = command;

@@ -1,8 +1,10 @@
-let { getQuiz } = require("../state/questionstore");
+import { CommandType } from "../types";
+import { getQuiz } from "../state/questionstore";
 
-module.exports = {
+const command: CommandType = {
   name: "solved",
   description: "List ut løste oppgaver",
+  pmOnly: true,
   execute(message) {
     const solved = getQuiz()
       .filter((el) => el.solved)
@@ -12,3 +14,5 @@ module.exports = {
     message.reply(`Løste oppgaver: ${solved}`);
   },
 };
+
+module.exports = command;

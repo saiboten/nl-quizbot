@@ -1,9 +1,11 @@
+import { CommandType } from "../types";
 const { endQuiz } = require("../state/state");
 
-module.exports = {
+const command: CommandType = {
   admin: true,
   name: "help",
   description: "Hjelp",
+  pmOnly: true,
   execute(message) {
     endQuiz();
     message.reply(
@@ -11,3 +13,5 @@ module.exports = {
     );
   },
 };
+
+module.exports = command;
