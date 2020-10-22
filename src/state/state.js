@@ -1,19 +1,13 @@
 let state = "IDLE";
 
-function prepare() {
+export function prepare() {
   state = "PREPARATION";
 }
 
-function startQuiz() {
+export function startQuiz() {
   state = "STARTED";
 }
 
-function endQuiz() {
+export function endQuiz() {
   state = "IDLE";
 }
-
-module.exports = {
-  state,
-  startQuiz,
-  endQuiz,
-};

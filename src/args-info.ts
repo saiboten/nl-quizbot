@@ -1,4 +1,6 @@
-module.exports = {
+import { CommandType } from "./types";
+
+const command: CommandType = {
   name: "args-info",
   description: "Information about the arguments provided.",
   args: true,
@@ -13,3 +15,5 @@ module.exports = {
     );
   },
 };
+
+export default command;

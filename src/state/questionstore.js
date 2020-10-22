@@ -1,14 +1,14 @@
 let quiz = [];
 
-function addQuestion(content) {
+export function addQuestion(content) {
   quiz.push({ id: quiz.length + 1, content });
 }
 
-function deleteQuestion(id) {
+export function deleteQuestion(id) {
   quiz = quiz.filter((el) => el.id !== id);
 }
 
-function markSolved(id, answer, solvedBy) {
+export function markSolved(id, answer, solvedBy) {
   var newQuizList = quiz.map((el) => {
     if (el.id === id) {
       return {
@@ -26,13 +26,6 @@ function markSolved(id, answer, solvedBy) {
   quiz = newQuizList;
 }
 
-function getQuiz() {
+export function getQuiz() {
   return quiz;
 }
-
-module.exports = {
-  getQuiz,
-  addQuestion,
-  deleteQuestion,
-  markSolved,
-};
